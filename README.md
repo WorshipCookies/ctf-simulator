@@ -21,7 +21,7 @@ Runs hundreds of matches and aggregates telemetry into a dataset.
 
 ---
 
-# Match Simulation Loop *(see Appendix A.1 — Simulation Time Model)*
+# Match Simulation Loop
 
 Each match runs for a fixed number of ticks.
 
@@ -36,7 +36,7 @@ Each tick performs:
 
 ---
 
-# Map Representation *(see Appendix A.1 — Simulation Time Model)*
+# Map Representation
 
 The arena is represented as a **graph of zones**.
 
@@ -91,7 +91,7 @@ Legend
 
 ---
 
-# Player Attributes *(see Appendix A.2 — Player Attribute Vector)*
+# Player Attributes
 
 Each player has attributes in range 1–100.
 
@@ -115,7 +115,7 @@ Players also have:
 
 ---
 
-# Behavioral Tendencies *(see Appendix A.3, A.7 — Movement Model & Behavioral Combat Modifiers)*
+# Behavioral Tendencies
 
 Examples:
 - overextends often
@@ -152,7 +152,7 @@ Midfield → intercept enemy carrier
 
 ---
 
-# Movement Model *(see Appendix A.3 — Movement Model)*
+# Movement Model
 
 Players move one zone per tick along a shortest path.
 
@@ -166,7 +166,7 @@ Behavior tendencies modify movement aggressiveness.
 
 ---
 
-# Combat Model *(see Appendix A.4 — Combat Resolution)*
+# Combat Model
 
 Combat occurs when opposing players occupy the same zone.
 
@@ -191,7 +191,7 @@ Consistency influences randomness.
 
 ---
 
-# Objective System *(see Appendix A.10, A.11 — Flag Grab Probability & Flag Return Probability)*
+# Objective System
 
 Flag interactions include:
 
@@ -206,7 +206,7 @@ own flag is present
 
 ---
 
-# Telemetry Signals *(see Appendix A.4–A.11 — Combat, Movement and Objective Systems)*
+# Telemetry Signals
 
 Signals intentionally capture role impact.
 
@@ -246,7 +246,7 @@ Resulting rows form the `students_dataset.csv`.
 
 ---
 
-# Ground Truth Generation *(see Appendix A.12, A.13 — Latent Skill Model & Final Skill Score)*
+# Ground Truth Generation
 
 Hidden tiers combine:
 
