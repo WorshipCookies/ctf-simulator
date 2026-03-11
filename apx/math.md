@@ -218,9 +218,9 @@ Thus:
 
 Given players A and B:
 
-Let
-$S_A = combat_{score}(A)$
-$S_B = combat_{score}(B)$
+Let\
+$S_A = combat_{score}(A)$\
+$S_B = combat_{score}(B)$\
 
 Probability A wins:
 
@@ -232,7 +232,7 @@ A Bernoulli trial determines the duel winner.
 
 # A.10 Flag Grab Probability
 
-When a player reaches the enemy flag room:
+When a player reaches the enemy flag room:\
 
 $grab\_{score} = 0.24M + 0.16R + 0.16O + 0.12W + 0.12D + 0.10P + 0.10Ad$
 
@@ -248,7 +248,7 @@ Where:
 | P      | positioning     |
 | Ad     | adaptability    |
 
-Final grab probability:
+Final grab probability:\
 $P(grab) = clamp(grab_score / 100, 0.05, 0.95)$
 
 ---
@@ -261,7 +261,7 @@ $return_{score} = 0.30R_d + 0.24W + 0.20O + 0.14P + 0.12D$
 Where:
 - $R_d$ = recovery_discipline
 
-Final probability:
+Final probability:\
 $P(return) = clamp(return_score / 100, 0.05, 0.95)$
 
 ---
