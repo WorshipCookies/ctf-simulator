@@ -77,7 +77,7 @@ Each base:
 
 Between bases there are **three main lanes**.
 
-![alt text](https://github.com/WorshipCookies/ctf-simulator/ArenaImage.png "Graph Arena Layout")
+![alt text](https://github.com/WorshipCookies/ctf-simulator/img/ArenaImage.png "Graph Arena Layout")
 
 Legend
 - `red_flag`  / `blue_flag` = flag rooms
