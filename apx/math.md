@@ -52,7 +52,7 @@ Each player attempts to move one step along the shortest path to their target zo
 
 First we compute the **movement score**:
 
-$movement_score = 0.40M + 0.20R + 0.20D + 0.20C$
+$movement_{score} = 0.40M + 0.20R + 0.20D + 0.20C$
 
 Where:
 - $M$ = movement
@@ -90,7 +90,7 @@ Each zone resolves a number of duels equal to: min( #RedPlayers, #BluePlayers)
 
 Each player receives a **combat score**:
 
-$combat_score = 0.28A + 0.16M + 0.14P + 0.12W + 0.10D + 0.08C + 0.05Ad + 0.07Ag$
+$combat_{score} = 0.28A + 0.16M + 0.14P + 0.12W + 0.10D + 0.08C + 0.05Ad + 0.07Ag$
 
 Where:
 
@@ -115,7 +115,7 @@ Combat score is adjusted according to environment.
 ---
 ## High Ground Bonus
 
-If a player occupies a zone with positive elevation: $combat\_score = combat\_score + 0.10P + 0.05W$
+If a player occupies a zone with positive elevation: $combat_{score} = combat_{score} + 0.10P + 0.05W$
 
 Where:
 - `P` = positioning
@@ -135,7 +135,7 @@ role = DEFENDER
 ```
 
 then:
-$combat\_score = combat\_score + 0.16P + 0.10R_d$
+$combat_{score} = combat_{score} + 0.16P + 0.10R_d$
 
 Where:
 - $P$ = positioning
@@ -151,7 +151,7 @@ zone_type ∈ {MID, CORRIDOR}
 role = MIDFIELD
 ```
 then:
-$combat_score = combat_score + 0.12M + 0.10Ad$
+$combat_score = combat_{score} + 0.12M + 0.10Ad$
 
 Where:
 - `M` = movement
@@ -163,7 +163,7 @@ Where:
 Zones have a cover value $c ∈ [0,1]$.
 
 Combat score is multiplied by:
-$combat_score = combat_score (1 + 0.10c)$
+$combat_{score} = combat_{score} (1 + 0.10c)$
 
 ---
 
@@ -176,7 +176,7 @@ Behavior tendencies introduce additional stochasticity.
 
 ```
 If pressure > 0.6:
-  combat_score ×= 0.86
+  combat_{score} ×= 0.86
 ```
 
 ---  
@@ -206,7 +206,7 @@ Noise magnitude:
 $noise = \max(0.02, \frac{101 - consistency}{220})$
 
 Final combat score:
-`combat_score × Uniform(1 - noise, 1 + noise)`
+$combat_{score} × Uniform(1 - noise, 1 + noise)$
 
 Thus:
 - high consistency → low variance
@@ -219,10 +219,8 @@ Thus:
 Given players A and B:
 
 Let
-```
-S_A = combat_score(A)  
-S_B = combat_score(B)
-```
+$S_A = combat_{score}(A)$
+$S_B = combat_{score}(B)$
 
 Probability A wins:
 
@@ -236,7 +234,7 @@ A Bernoulli trial determines the duel winner.
 
 When a player reaches the enemy flag room:
 
-$grab\_score = 0.24M + 0.16R + 0.16O + 0.12W + 0.12D + 0.10P + 0.10Ad$
+$grab\_{score} = 0.24M + 0.16R + 0.16O + 0.12W + 0.12D + 0.10P + 0.10Ad$
 
 Where:
 
@@ -251,14 +249,14 @@ Where:
 | Ad     | adaptability    |
 
 Final grab probability:
-`P(grab) = clamp(grab_score / 100, 0.05, 0.95)`
+$P(grab) = clamp(grab_score / 100, 0.05, 0.95)$
 
 ---
 # A.11 Flag Return Probability
 
 If a player reaches a dropped friendly flag:
 
-$return\_score = 0.30R_d + 0.24W + 0.20O + 0.14P + 0.12D$
+$return_{score} = 0.30R_d + 0.24W + 0.20O + 0.14P + 0.12D$
 
 Where:
 - $R_d$ = recovery_discipline
