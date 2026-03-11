@@ -144,7 +144,6 @@ Roles include:
 Roles are dynamic and may change during a match.
 
 Examples:
-
 Runner → carrying flag  
 Support → escort carrier  
 Defender → guard base entrances  
@@ -195,14 +194,16 @@ Consistency influences randomness.
 
 Flag interactions include:
 
-Grab
-Return
-Capture
+- Grab
+- Return
+- Capture
 
 Captures occur when:
+```
 enemy flag carried → returned to base  
 AND  
 own flag is present
+```
 
 ---
 
@@ -212,23 +213,12 @@ Signals intentionally capture role impact.
 
 Examples:
 
-Escort metrics
-- TimeNearCarrier
-
-Anti-chaser support
-- KillsNearCarrier
-
-Offensive pressure
-- KillsWhileCarrierAlive
-
-Defense
-- DefenseStopsNearFlag
-
-Defensive discipline
-- FlagRoomPresenceUnderThreat
-
-High pressure plays
-- ReturnsUnderPressure
+Escort metrics: `TimeNearCarrier`
+Anti-chaser support: `KillsNearCarrier`
+Offensive pressure: `KillsWhileCarrierAlive`
+Defense: `DefenseStopsNearFlag`
+Defensive discipline: `FlagRoomPresenceUnderThreat`
+High pressure plays: `ReturnsUnderPressure`
 
 ---
 
@@ -237,7 +227,6 @@ High pressure plays
 Many matches are simulated.
 
 Player telemetry is aggregated:
-
 - totals
 - per-match averages
 - derived ratios
@@ -254,34 +243,29 @@ Hidden tiers combine:
 2. Simulated performance
 
 Latent skill uses:
-
 - core attributes
 - role fit
 - consistency modifier
 
 Performance score uses normalized metrics including:
-
 - win rate
 - captures
 - objective actions
 - interceptions
 - defensive metrics
 - escort metrics
-
-For specific details see [Appendix A.12–A.13](./apx/math.md#a12-latent-skill-model)
-
 ---
 
 # Tier Assignment
 
-CombinedScore = 0.65 * LatentSkill  + 0.35 * PerformanceScore
+CombinedScore = `0.65 * LatentSkill  + 0.35 * PerformanceScore`
 
 Players are ranked and split into:
 
-Bronze → 40%  
-Silver → 35%  
-Gold → 20%  
-Diamond → 5%
+- Bronze → 40%  
+- Silver → 35%  
+- Gold → 20%  
+- Diamond → 5%
 
 ---
 
