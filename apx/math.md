@@ -73,7 +73,7 @@ Certain tendencies modify the movement score.
 ### Movement probability
 
 Movement score is converted to a movement probability:
-$p_{move} = \min(0.95, 0.65 + \frac{movement\_score - 50}{200})$
+$p_{move} = \min(0.95, 0.65 + \frac{movement_{score} - 50}{200})$
 
 Interpretation:
 - average players move with probability ≈ 0.65
