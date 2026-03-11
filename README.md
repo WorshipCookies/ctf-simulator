@@ -66,6 +66,29 @@ Movement uses shortest-path traversal between zones.
 
 ---
 
+# Arena Layout
+
+The arena is **symmetrical** to ensure fairness.
+
+Each base:
+- is slightly elevated
+- contains the flag
+- has **4 entrances**
+
+Between bases there are **three main lanes**.
+
+![alt text](https://github.com/WorshipCookies/ctf-simulator/ArenaImage.png "Graph Arena Layout")
+
+Legend
+- `red_flag`  / `blue_flag` = flag rooms
+- `E1–E4` = base entrances
+- \_R or \_B = Red or Blue
+- `top / mid / bot` = the three main corridors
+- `center_high` = elevated central route
+- `center_low` = lower alternative route
+
+---
+
 # Player Attributes
 
 Each player has attributes in range 1–100.
