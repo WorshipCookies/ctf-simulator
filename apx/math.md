@@ -83,7 +83,7 @@ Interpretation:
 # A.4 Combat Resolution
 
 Combat occurs when opposing players occupy the same zone.
-Each zone resolves a number of duels equal to: min( # RedPlayers , # BluePlayers )
+Each zone resolves a number of duels equal to: min(#Red_Players,#Blue_Players)
 
 ---
 # A.5 Combat Score
