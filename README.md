@@ -7,11 +7,13 @@ Source files:
 - tournament.py
 - BehaviorTendency.py
 
+For the full mathematical specification of the simulator, see the [Mathematical Appendix](./apx/math.md).
+
 ---
 # Architecture Overview
 The system consists of two main parts:
 
-### 1) Match Simulation Engine
+### 1) Match Simulation Engine 
 Handles a single match between 8 agents.
 
 ### 2) Tournament Runner
@@ -19,7 +21,7 @@ Runs hundreds of matches and aggregates telemetry into a dataset.
 
 ---
 
-# Match Simulation Loop
+# Match Simulation Loop *(see Appendix A.1 — Simulation Time Model)*
 
 Each match runs for a fixed number of ticks.
 
@@ -34,7 +36,7 @@ Each tick performs:
 
 ---
 
-# Map Representation
+# Map Representation *(see Appendix A.1 — Simulation Time Model)*
 
 The arena is represented as a **graph of zones**.
 
@@ -89,7 +91,7 @@ Legend
 
 ---
 
-# Player Attributes
+# Player Attributes *(see Appendix A.2 — Player Attribute Vector)*
 
 Each player has attributes in range 1–100.
 
@@ -113,7 +115,7 @@ Players also have:
 
 ---
 
-# Behavioral Tendencies
+# Behavioral Tendencies *(see Appendix A.3, A.7 — Movement Model & Behavioral Combat Modifiers)*
 
 Examples:
 - overextends often
@@ -150,7 +152,7 @@ Midfield → intercept enemy carrier
 
 ---
 
-# Movement Model
+# Movement Model *(see Appendix A.3 — Movement Model)*
 
 Players move one zone per tick along a shortest path.
 
@@ -164,7 +166,7 @@ Behavior tendencies modify movement aggressiveness.
 
 ---
 
-# Combat Model
+# Combat Model *(see Appendix A.4 — Combat Resolution)*
 
 Combat occurs when opposing players occupy the same zone.
 
@@ -189,7 +191,7 @@ Consistency influences randomness.
 
 ---
 
-# Objective System
+# Objective System *(see Appendix A.10, A.11 — Flag Grab Probability & Flag Return Probability)*
 
 Flag interactions include:
 
@@ -204,7 +206,7 @@ own flag is present
 
 ---
 
-# Telemetry Signals
+# Telemetry Signals *(see Appendix A.4–A.11 — Combat, Movement and Objective Systems)*
 
 Signals intentionally capture role impact.
 
@@ -244,7 +246,7 @@ Resulting rows form the `students_dataset.csv`.
 
 ---
 
-# Ground Truth Generation
+# Ground Truth Generation *(see Appendix A.12, A.13 — Latent Skill Model & Final Skill Score)*
 
 Hidden tiers combine:
 
@@ -265,6 +267,8 @@ Performance score uses normalized metrics including:
 - interceptions
 - defensive metrics
 - escort metrics
+
+For specific details see [Appendix A.12–A.13](./apx/math.md#a12-latent-skill-model)
 
 ---
 
@@ -290,3 +294,92 @@ The simulator provides a **controlled synthetic dataset** for teaching:
 - feature engineering
 - ranking systems
 - evaluation against hidden labels
+
+---
+
+# Reference Map to Mathematical Appendix
+
+This section links each high-level simulator concept in this document to its corresponding mathematical specification in the appendix.
+
+Appendix location:
+
+- [`/apx/math.md`](./apx/math.md)
+
+---
+
+## Quick Lookup Table
+
+| Concept in this document | Mathematical appendix section |
+|---|---|
+| Match loop / tick order | [A.1 Simulation Time Model](./apx/math.md#a1-simulation-time-model) |
+| Player attributes | [A.2 Player Attribute Vector](./apx/math.md#a2-player-attribute-vector) |
+| Movement model | [A.3 Movement Model](./apx/math.md#a3-movement-model) |
+| Movement probability | [A.3 Movement Model](./apx/math.md#a3-movement-model) |
+| Overextension logic | [A.3 Movement Model](./apx/math.md#a3-movement-model) and [A.7 Behavioral Combat Modifiers](./apx/math.md#a7-behavioral-combat-modifiers) |
+| Combat resolution | [A.4 Combat Resolution](./apx/math.md#a4-combat-resolution) |
+| Combat score | [A.5 Combat Score](./apx/math.md#a5-combat-score) |
+| Elevation / high ground | [A.6 Environmental Combat Modifiers](./apx/math.md#a6-environmental-combat-modifiers) |
+| High ground bonus | [A.6 Environmental Combat Modifiers](./apx/math.md#a6-environmental-combat-modifiers) |
+| Low ground interpretation | [A.6 Environmental Combat Modifiers](./apx/math.md#a6-environmental-combat-modifiers) |
+| Defender base bonus | [A.6 Environmental Combat Modifiers](./apx/math.md#a6-environmental-combat-modifiers) |
+| Midfield zone bonus | [A.6 Environmental Combat Modifiers](./apx/math.md#a6-environmental-combat-modifiers) |
+| Cover influence | [A.6 Environmental Combat Modifiers](./apx/math.md#a6-environmental-combat-modifiers) |
+| Behavioral tendencies in combat | [A.7 Behavioral Combat Modifiers](./apx/math.md#a7-behavioral-combat-modifiers) |
+| Panic under pressure | [A.7 Behavioral Combat Modifiers](./apx/math.md#a7-behavioral-combat-modifiers) |
+| Strong under objective pressure | [A.7 Behavioral Combat Modifiers](./apx/math.md#a7-behavioral-combat-modifiers) |
+| Inconsistent high ceiling | [A.7 Behavioral Combat Modifiers](./apx/math.md#a7-behavioral-combat-modifiers) |
+| Consistency and noise | [A.8 Consistency Noise](./apx/math.md#a8-consistency-noise) |
+| Duel win probability | [A.9 Duel Outcome Probability](./apx/math.md#a9-duel-outcome-probability) |
+| Flag grab probability | [A.10 Flag Grab Probability](./apx/math.md#a10-flag-grab-probability) |
+| Flag return probability | [A.11 Flag Return Probability](./apx/math.md#a11-flag-return-probability) |
+| Latent skill generation | [A.12 Latent Skill Model](./apx/math.md#a12-latent-skill-model) |
+| Final hidden score / combined truth | [A.13 Final Skill Score](./apx/math.md#a13-final-skill-score) |
+| Tier assignment | [A.13 Final Skill Score](./apx/math.md#a13-final-skill-score) |
+| Design assumptions / interpretation | [A.14 Design Philosophy](./apx/math.md#a14-design-philosophy) |
+
+---
+
+## Concept-to-Appendix Crosswalk
+
+### Architecture Overview
+For the formal tick order and simulation sequencing, see:
+- [A.1 Simulation Time Model](./apx/math.md#a1-simulation-time-model)
+
+### Player Attributes
+For the formal definition of the player attribute vector, see:
+- [A.2 Player Attribute Vector](./apx/math.md#a2-player-attribute-vector)
+
+### Behavioral Tendencies
+For the mathematical effect of tendencies on movement, combat, and variance, see:
+- [A.3 Movement Model](./apx/math.md#a3-movement-model)
+- [A.7 Behavioral Combat Modifiers](./apx/math.md#a7-behavioral-combat-modifiers)
+- [A.8 Consistency Noise](./apx/math.md#a8-consistency-noise)
+
+### Movement Model
+For the exact movement score equation and movement probability, see:
+- [A.3 Movement Model](./apx/math.md#a3-movement-model)
+
+### Combat Model
+For duel resolution and combat score equations, see:
+- [A.4 Combat Resolution](./apx/math.md#a4-combat-resolution)
+- [A.5 Combat Score](./apx/math.md#a5-combat-score)
+- [A.9 Duel Outcome Probability](./apx/math.md#a9-duel-outcome-probability)
+
+### Environmental Modifiers
+For elevation, high ground, defender bonuses, midfield bonuses, and cover, see:
+- [A.6 Environmental Combat Modifiers](./apx/math.md#a6-environmental-combat-modifiers)
+
+### Objective System
+For flag grab and return probabilities, see:
+- [A.10 Flag Grab Probability](./apx/math.md#a10-flag-grab-probability)
+- [A.11 Flag Return Probability](./apx/math.md#a11-flag-return-probability)
+
+### Ground Truth Generation
+For the attribute-based latent score, performance-informed final score, and tier assignment, see:
+- [A.12 Latent Skill Model](./apx/math.md#a12-latent-skill-model)
+- [A.13 Final Skill Score](./apx/math.md#a13-final-skill-score)
+
+### Interpretation / Design Philosophy
+For the assumptions behind the simulator, especially the idea that skill is latent and telemetry is noisy, see:
+- [A.14 Design Philosophy](./apx/math.md#a14-design-philosophy)
+
