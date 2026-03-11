@@ -104,6 +104,7 @@ Where:
 | C      | consistency     |
 | Ad     | adaptability    |
 | Ag     | aggression      |
+
 Aim is deliberately the dominant variable.
 
 ---
