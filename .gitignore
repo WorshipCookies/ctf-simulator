@@ -1,5 +1,3 @@
-*.csv
-
 # Source - https://stackoverflow.com/a/14058267
 # Posted by seanrose, modified by community. See post 'Timeline' for change history
 # Retrieved 2026-03-11, License - CC BY-SA 3.0
@@ -54,3 +52,9 @@ coverage.xml
 
 # Sphinx documentation
 docs/_build/
+
+# CSV
+*.csv
+
+# Jupyter Notebooks
+Exercises/
