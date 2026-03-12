@@ -44,6 +44,7 @@ class TournamentConfig:
 
     # Ground truth generation
     truth_seed_offset: int = 9_999
+
     # Default tier split (must sum to 1.0)
     tier_distribution: Tuple[float, float, float, float] = (0.40, 0.35, 0.20, 0.05)  # Bronze, Silver, Gold, Diamond
 
@@ -741,11 +742,17 @@ def _finalize_aggregates(agg: dict[int, PlayerAggregate]) -> list[dict]:
 # ============================================================
 
 if __name__ == "__main__":
-    import random as _r
-    _r.seed(TournamentConfig.base_seed)
+    
 
     # Demo with 100 synthetic players.
     # In your project, you'll load these from CSV/JSON.
+    
+     # Total Number of Players Generated - Might want to move this, but for now lets keep it here.
+    num_player: int = 100
+
+    # Configure the Tournament variables - Lets keep it with the default values and role-balanced.
+    # Overrides possible for seed, n_matches... (see above)
+    tcfg = TournamentConfig()
 
     # NOTE: behavior_tendencies in the engine uses an Enum.
     # If your PlayerProfile currently expects BehaviorTendency values, pass those enums instead.
@@ -759,8 +766,10 @@ if __name__ == "__main__":
         BehaviorTendency.INCONSISTENT_HIGH_CEILING,
     ]
 
+    # Lets use the tournament config seed to keep everything deterministic.
+    _r = random.Random(tcfg.base_seed)
     all_players: List[PlayerProfile] = []
-    for i in range(100):
+    for i in range(num_player):
         role = [Role.RUNNER, Role.SUPPORT, Role.DEFENDER, Role.MIDFIELD][i % 4]
         all_players.append(
             PlayerProfile(
@@ -783,7 +792,7 @@ if __name__ == "__main__":
             )
         )
 
-    tcfg = TournamentConfig(n_matches=300, matchmaking="role_balanced", base_seed=77)
+    # Run the Tournaments here.
     student_rows, truth_rows = run_tournament(all_players, tournament_cfg=tcfg, include_ground_truth=True)
 
     assert truth_rows is not None
